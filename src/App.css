@@ -1,0 +1,16 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50rem;
+}
+
+.container {
+    background-color: aliceblue;
+    width: 40%;
+    height: auto;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+}
+

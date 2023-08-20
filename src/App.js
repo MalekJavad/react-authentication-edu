@@ -2,11 +2,15 @@ import React from "react";
 
 import "./App.css";
 
+import Auth from "./containers/Auth/Auth.js";
+
 const App = () => {
     return (
-        <div className="auth">
-            <Auth />
-        </div>
+        <main>
+            <div className="container">
+                <Auth />
+            </div>
+        </main>
     );
 };
 
