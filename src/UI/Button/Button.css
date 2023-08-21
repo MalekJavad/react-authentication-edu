@@ -1,0 +1,44 @@
+.btn {
+    font: inherit;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.toggle-signup , .toggle-login  {
+    width: 40%;
+    height: 2rem;
+    text-align: center;
+    margin: auto 15px;
+    border: 1px solid rgb(163, 175, 238); ;
+    background-color: aliceblue;
+}
+
+.toggle-signup:hover , .toggle-login:hover {
+    background-color: rgb(163, 175, 238);   
+}
+
+.tab-active {
+    border: none;
+    background-color: rgb(163, 175, 238);   
+}
+
+.btn-login {
+    width: 55%;
+    height: 3rem;
+    text-align: center;
+    margin: 1rem auto auto 0px;
+    padding: 10px;
+    background-color: rgb(127, 146, 252);   
+}
+
+.btn-signup {
+    width: 55%;
+    height: 3rem;
+    text-align: center;
+    margin: 1rem auto auto 0px;
+    padding: 10px;
+    background-color: rgb(127, 146, 252);   
+}

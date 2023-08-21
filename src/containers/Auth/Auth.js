@@ -22,8 +22,8 @@ const Auth = () => {
         <div className="auth">
 
             <div className="tab">
-                <Button buttonType="button" className="btn" click={() => {toggleForm('login')}}>ورود</Button>
-                <Button buttonType="button" className="btn" click={() => {toggleForm('signup')}}>ثبت نام</Button>
+                <Button buttonType="button" className={`btn toggle-login ${authMethod==='login' ? 'tab-active' : null}`} click={() => {toggleForm('login')}}>ورود</Button>
+                <Button buttonType="button" className={`btn toggle-signup ${authMethod==='signup' ? 'tab-active' : null}`} click={() => {toggleForm('signup')}}>ثبت نام</Button>
             </div>
 
             <div className="form">

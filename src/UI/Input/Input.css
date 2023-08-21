@@ -1,0 +1,11 @@
+.input {
+    width: 65%;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    padding:  1rem 2rem;
+    margin: 10px;
+    font: inherit;
+    direction: rtl;
+    font-size: 15px;
+}

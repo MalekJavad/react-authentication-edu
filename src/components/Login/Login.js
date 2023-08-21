@@ -27,7 +27,7 @@ const Login = (props) => {
                 onchange={(event) => {setPassword(event.target.value)}} 
             />
 
-            <Button buttonType="button" className="btn" click={props.loginClick}>ورود</Button>
+            <Button buttonType="button" className="btn btn-login" click={props.loginClick}>ورود</Button>
         </div>
     );
 };
