@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import "./Auth.css";
 
 import Login from '../../components/Login/Login.js';
 import Signup from '../../components/Signup/Signup.js';
-import Button from "../../UI/Button/Button";
+import Button from "../../UI/Button/Button.js";
+import { UserContext } from "../../context/UserContext.js";
+import UserContextProvider from "../../context/UserContext.js";
 
 const Auth = () => {
     const [authMethod, setAuthMethod] = useState('login');
+
+    const userContext = useContext(UserContext);
 
     const toggleForm = (clicked) => {
         if (clicked !== authMethod) {
@@ -16,7 +21,17 @@ const Auth = () => {
     }
 
     const loginAction = () => {};
-    const signupAction = () => {};
+
+    const signupAction = (u, n, p1, p2) => {
+        const newUser = {
+            username: u,
+            name: n,
+            password1: p1,
+            password2: p2,
+        };
+        userContext.setUsers(newUser);
+        console.log('done')
+    };
 
     return (
         <div className="auth">
@@ -34,7 +49,12 @@ const Auth = () => {
                     <Signup signupClick={signupAction} />
                 }
             </div>
-
+            
+            <div className="user-tab">
+                <UserContextProvider>
+                    <Link className="list-link" to="/users">لیست کاربران</Link>
+                </UserContextProvider>
+            </div>
         </div>
     );
 };

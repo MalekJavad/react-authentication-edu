@@ -10,5 +10,14 @@
 
 body {
     font-family: 'Vazir-FD';
-    background-color: rgb(28, 56, 214);   
+    background-color: rgb(62, 84, 212);   
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: inherit;
 }

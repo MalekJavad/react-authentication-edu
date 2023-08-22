@@ -45,7 +45,7 @@ const Signup = (props) => {
                 onchange={(event) => {setPassword2(event.target.value)}} 
             />
 
-            <Button buttonType="button" className="btn btn-signup" click={props.signupClick}>ثبت نام</Button>
+            <Button buttonType="button" className="btn btn-signup" click={() => props.signupClick(username, name, password1, password2)}>ثبت نام</Button>
         </div>
     );
 };

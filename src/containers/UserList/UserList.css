@@ -1,0 +1,14 @@
+.title {
+    font: inherit;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-head {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}

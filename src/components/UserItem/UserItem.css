@@ -1,0 +1,10 @@
+li {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+    border-radius: 1rem;
+    margin: 8% 0;
+    padding: 0.3rem 1rem;
+    background-color: rgb(202, 225, 255);
+}
