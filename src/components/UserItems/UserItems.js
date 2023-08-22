@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 
 import './UserItems.css'
-import { UserContext } from "../../context/UserContext.js";
+import { UserContext } from "../../context/user-context";
 import UserItem from "../../components/UserItem/UserItem.js";
 
 

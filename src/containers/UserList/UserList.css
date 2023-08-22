@@ -12,3 +12,11 @@
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
+.list-login-error {
+    color: red;
+    display: block;
+    text-align: center;
+    direction: rtl;
+    margin-top: 50%;
+}

@@ -5,19 +5,21 @@ import "./App.css";
 
 import Auth from "./containers/Auth/Auth.js";
 import Users from "./containers/UserList/UserList.js";
-import UserContextProvider from "./context/UserContext";
+
+import ContextWrapper from "./hoc/context-wrapper.js"
+
 
 const App = () => {
     return (
         <Router>
             <main>
                 <div className="container">
-                    <UserContextProvider>
+                    <ContextWrapper>
                         <Routes>
                             <Route path="/" element={<Auth />} exact />
                             <Route path="/users" element={<Users />} />
                         </Routes>
-                    </UserContextProvider>
+                    </ContextWrapper>
                 </div>
             </main>
         </Router>

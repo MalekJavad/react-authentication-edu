@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom";
 
 import './UserList.css'
 import UserItems from '../../components/UserItems/UserItems.js';
+import { AuthContext } from '../../context/auth-context.js';
 
-const Users = () => {
+
+const Users = () => { 
+    const authContext = useContext(AuthContext);
 
     return (
         <div className="list">
@@ -14,7 +17,12 @@ const Users = () => {
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </Link>
             </div>
-            <UserItems />
+            {
+                authContext.isLoggedIn ?
+                <UserItems />
+                :
+                <span className="list-login-error">برای دیدن لیست کاربران، وارد حساب کاربری خود شوید.</span>
+            }
         </div>
     );
 };

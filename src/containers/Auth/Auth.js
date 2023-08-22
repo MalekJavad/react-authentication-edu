@@ -6,8 +6,8 @@ import "./Auth.css";
 import Login from '../../components/Login/Login.js';
 import Signup from '../../components/Signup/Signup.js';
 import Button from "../../UI/Button/Button.js";
-import { UserContext } from "../../context/UserContext.js";
-import UserContextProvider from "../../context/UserContext.js";
+import { UserContext } from "../../context/user-context.js";
+import UserContextProvider from "../../context/user-context.js";
 
 const Auth = () => {
     const [authMethod, setAuthMethod] = useState('login');
