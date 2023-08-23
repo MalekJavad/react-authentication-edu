@@ -14,7 +14,7 @@ const Users = () => {
             <div className="list-head">
                 <h1 className="title">لیست کاربران</h1>
                 <Link className="home-link" to="/">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 </Link>
             </div>
             {

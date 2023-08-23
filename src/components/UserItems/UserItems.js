@@ -13,7 +13,7 @@ const UserItems = () => {
             <ul>
                 {userContext.users.map((user) => {
                     return (
-                        <UserItem data={user} />
+                        <UserItem key={user.username} data={user} />
                     )
                 })}
             </ul>

@@ -4,7 +4,7 @@ import "./UserItem.css";
 
 const UserItem = (props) => {
     return (
-        <li key={props.data.username}>
+        <li>
             <p>{props.data.username}</p>
             <p>{props.data.name}</p>
         </li>
