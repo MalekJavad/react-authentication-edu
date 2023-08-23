@@ -8,9 +8,8 @@ main {
 .container {
     background-color: aliceblue;
     width: 20%;
-    height: 32rem;
+    height: auto;
     border-radius: 20px;
     padding: 2rem;
     text-align: center;
 }
-

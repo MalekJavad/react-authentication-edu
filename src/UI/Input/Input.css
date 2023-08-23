@@ -9,3 +9,7 @@
     direction: rtl;
     font-size: 15px;
 }
+
+.error {
+    border: 1px solid red;
+}

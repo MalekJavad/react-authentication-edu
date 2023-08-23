@@ -11,7 +11,7 @@ import UserContextProvider from "../../context/user-context.js";
 import { AuthContext } from "../../context/auth-context.js"
 
 const Auth = () => {
-    const [authMethod, setAuthMethod] = useState('login');
+    const [authMethod, setAuthMethod] = useState('signup');
 
     const userContext = useContext(UserContext);
     const authContext = useContext(AuthContext)
@@ -42,14 +42,20 @@ const Auth = () => {
         console.log('logged in');
     };
 
-    const signupAction = (u, n, p1, p2) => {
-        const newUser = {
-            username: u,
-            name: n,
-            password1: p1,
-            password2: p2,
-        };
-        userContext.setUsers(newUser);
+    const signupAction = (u, n, p1, p2, err) => {
+        const noError = err.every(item => item===false);
+        if (noError) {
+            const newUser = {
+                username: u,
+                name: n,
+                password1: p1,
+                password2: p2,
+            };
+            userContext.setUsers(newUser);
+        }
+        else {
+            // Error Notify Component
+        }
     };
 
     const formPage = (
