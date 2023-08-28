@@ -35,12 +35,12 @@ const Signup = (props) => {
         setNameError({status: true, message: ''});
         setPassword1Error({status: true, message: ''});
         setPassword2Error({status: true, message: ''}); 
+        console.log('refreshed')
     }, [props])
 
     // use effect for username
     useEffect(() => {
         if(username.used) {
-            console.log(username.used, "in if")
             if (username.value.length === 0) {
                 setUsernameError({status: true, message: 'ورود نام کاربری الزامی است'});
             }
@@ -109,8 +109,13 @@ const Signup = (props) => {
     }
     , [password2, password1]);
 
+    const formSubmitHandler = (event) => {
+        event.preventDefault();
+        props.signupClick(username.value, name.value, password1.value, password2.value, noError);
+    }
+
     return (
-        <div className="signup">
+        <form className="signup" onSubmit={(event) => formSubmitHandler(event)}>
             <Input 
                 inputType="text" 
                 className={`input ${usernameError.status && username.used ? "error" : ''}`}
@@ -147,8 +152,8 @@ const Signup = (props) => {
             />
             <ErrorText>{password2Error.message}</ErrorText>
 
-            <Button disable={!noError} buttonType="button" className="btn btn-signup" click={() => props.signupClick(username.value, name.value, password1.value, password2.value, noError)}>ثبت نام</Button>
-        </div>
+            <Button disable={!noError} buttonType="submit" className="btn btn-signup">ثبت نام</Button>
+        </form>
     );
 };
 
