@@ -8,6 +8,7 @@ import ErrorText from "../../UI/ErrorText/ErrorText";
 
 import { UserContext } from "../../context/user-context.js";
 
+
 const Signup = (props) => {
     const [username, setUsername] = useState({value: '', used: false});
     const [name, setName] = useState({value: '', used: false});
@@ -38,10 +39,8 @@ const Signup = (props) => {
 
     // use effect for username
     useEffect(() => {
-        // setUsernameError({status: false, message: ''});
-
         if(username.used) {
-
+            console.log(username.used, "in if")
             if (username.value.length === 0) {
                 setUsernameError({status: true, message: 'ورود نام کاربری الزامی است'});
             }
@@ -64,8 +63,6 @@ const Signup = (props) => {
 
     // use effect for name
     useEffect(() => {
-        // setNameError({status: false, message: ''}); 
-
         if (name.used) {   
 
             if (name.value.length === 0) {
@@ -80,8 +77,6 @@ const Signup = (props) => {
 
     // use effect for password1
     useEffect(() => {
-        // setPassword1Error({status: false, message: ''});
-
         if (password1.used) {
 
             if (password1.value.length === 0) {
@@ -99,8 +94,6 @@ const Signup = (props) => {
 
     // use effect for password2
     useEffect(() => {
-        // setPassword2Error({status: false, message: ''});
-
         if (password2.used) {
             
             if (password2.value.length === 0) {
@@ -120,16 +113,16 @@ const Signup = (props) => {
         <div className="signup">
             <Input 
                 inputType="text" 
-                className={`input ${usernameError.status && username.used ? "error" : null}`}
+                className={`input ${usernameError.status && username.used ? "error" : ''}`}
                 inputPlaceholder="نام کاربری"
                 inputValue={username.value} 
                 onchange={(event) => {setUsername({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{usernameError.message}</ErrorText>
+            <ErrorText>{usernameError.status && username.used ? usernameError.message : ''}</ErrorText>
 
             <Input 
                 inputType="text" 
-                className={`input ${nameError.status && name.used ? "error" : null}`}
+                className={`input ${nameError.status && name.used ? "error" : ''}`}
                 inputPlaceholder="نام و نام خانوادگی"
                 inputValue={name.value} 
                 onchange={(event) => {setName({value: event.target.value, used: true})}} 
@@ -138,7 +131,7 @@ const Signup = (props) => {
 
             <Input 
                 inputType="password" 
-                className={`input ${password1Error.status && password1.used ? "error" : null}`}
+                className={`input ${password1Error.status && password1.used ? "error" : ''}`}
                 inputPlaceholder="رمز عبور"
                 inputValue={password1.value} 
                 onchange={(event) => {setPassword1({value: event.target.value, used: true})}} 
@@ -147,14 +140,13 @@ const Signup = (props) => {
 
             <Input 
                 inputType="password" 
-                className={`input ${password2Error.status && password2.used ? "error" : null}`}
+                className={`input ${password2Error.status && password2.used ? "error" : ''}`}
                 inputPlaceholder="تکرار رمز عبور"
                 inputValue={password2.value} 
                 onchange={(event) => {setPassword2({value: event.target.value, used: true})}} 
             />
             <ErrorText>{password2Error.message}</ErrorText>
-            {console.log(errors)}
-            {console.log(noError)}
+
             <Button disable={!noError} buttonType="button" className="btn btn-signup" click={() => props.signupClick(username.value, name.value, password1.value, password2.value, noError)}>ثبت نام</Button>
         </div>
     );
