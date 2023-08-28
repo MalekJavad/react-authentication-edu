@@ -6,15 +6,17 @@ import "./Auth.css";
 import Login from '../../components/Login/Login.js';
 import Signup from '../../components/Signup/Signup.js';
 import Button from "../../UI/Button/Button.js";
+import Notification from "../../UI/Notification/Notification.js";
 import { UserContext } from "../../context/user-context.js";
 import UserContextProvider from "../../context/user-context.js";
 import { AuthContext } from "../../context/auth-context.js"
 
 const Auth = () => {
     const [authMethod, setAuthMethod] = useState('signup');
+    const [notification, setNotification] = useState({status: false, type: '', message: ''});
 
     const userContext = useContext(UserContext);
-    const authContext = useContext(AuthContext)
+    const authContext = useContext(AuthContext);
 
     const toggleForm = (clicked) => {
         if (clicked !== authMethod) {
@@ -42,8 +44,7 @@ const Auth = () => {
         console.log('logged in');
     };
 
-    const signupAction = (u, n, p1, p2, err) => {
-        const noError = err.every(item => item===false);
+    const signupAction = (u, n, p1, p2, noError) => {
         if (noError) {
             const newUser = {
                 username: u,
@@ -52,9 +53,10 @@ const Auth = () => {
                 password2: p2,
             };
             userContext.setUsers(newUser);
+            setNotification({status: true, type: 'successful', message: 'ثبت نام با موفقیت انجام شد'})
         }
         else {
-            // Error Notify Component
+            setNotification({status: true, type: 'error', message: 'خطا های فیلد ها را اصلاح کنید'});
         }
     };
 
@@ -78,6 +80,7 @@ const Auth = () => {
 
     return (
         <div className="auth">
+            {notification.status ? <Notification type={notification.type}>{notification.message}</Notification> : null}
 
             {authContext.isLoggedIn ? <span className="list-login-error">شما از قبل وارد حساب کاربری خود شده اید.</span> : formPage}
             

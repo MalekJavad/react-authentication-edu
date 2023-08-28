@@ -1,0 +1,32 @@
+.notification-box {
+    width: 20%;
+    height: auto;
+    border-radius: 10px;
+    padding: 1rem;
+    position: absolute;
+    top: 3rem;
+}
+
+.notification-text {
+    font: inherit;
+    font-weight: 600;
+}
+
+.notification-error {
+    background-color: rgb(252, 183, 183);
+    border: 2px solid rgb(255, 44, 44);
+    color: rgb(255, 44, 44);
+}
+
+.notification-warning {
+    background-color: rgb(253, 255, 154);
+    border: 2px solid rgb(177, 189, 7);
+    color: rgb(177, 180, 3);
+}
+
+.notification-successful {
+    background-color: rgb(170, 248, 170);
+    border: 2px solid rgb(24, 184, 3);
+    color: rgb(24, 184, 3);
+}
+

@@ -19,7 +19,8 @@ const Signup = (props) => {
     const [password1Error, setPassword1Error] = useState({status: true, message: ''});
     const [password2Error, setPassword2Error] = useState({status: true, message: ''});
 
-    const errorAll = [usernameError.status, nameError.status, password1Error.status, password2Error.status];
+    const errors = [usernameError.status, nameError.status, password1Error.status, password2Error.status];
+    const noError = errors.every(item => item===false);
 
     const userContext = useContext(UserContext);
 
@@ -29,11 +30,15 @@ const Signup = (props) => {
         setName({value: '', used: false});
         setPassword1({value: '', used: false});
         setPassword2({value: '', used: false});
+        setUsernameError({status: true, message: ''});
+        setNameError({status: true, message: ''});
+        setPassword1Error({status: true, message: ''});
+        setPassword2Error({status: true, message: ''}); 
     }, [props])
 
     // use effect for username
     useEffect(() => {
-        setUsernameError({status: true, message: '', used: false});
+        setUsernameError({status: false, message: ''});
 
         if(username.used) {
             if (username.value.length === 0) {
@@ -44,7 +49,7 @@ const Signup = (props) => {
             }
             else {
                 const users = [...userContext.users];
-                const isExist = users.findIndex((user)=>{return user.username.value === username.value}) !== -1;
+                const isExist = users.findIndex((user)=>{return user.username === username.value}) !== -1;
                 if (isExist) {
                     setUsernameError({status: true, message: 'نام کاربری از قبل وجود دارد'});
                 }
@@ -55,9 +60,9 @@ const Signup = (props) => {
 
     // use effect for name
     useEffect(() => {
-        setNameError({status: true, message: ''}); 
+        setNameError({status: false, message: ''}); 
+        if (name.used) {   
 
-        if (name.used) {
             if (name.value.length === 0) {
                 setNameError({status: true, message: 'ورود نام و نام خانوادگی الزامی است'});
             }
@@ -67,9 +72,10 @@ const Signup = (props) => {
 
     // use effect for password1
     useEffect(() => {
-        setPassword1Error({status: true, message: ''});
+        setPassword1Error({status: false, message: ''});
 
         if (password1.used) {
+
             if (password1.value.length === 0) {
                 setPassword1Error({status: true, message: 'ورود رمز عبور الزامی است'});
             }
@@ -82,9 +88,10 @@ const Signup = (props) => {
 
     // use effect for password2
     useEffect(() => {
-        setPassword2Error({status: true, message: ''});
+        setPassword2Error({status: false, message: ''});
 
         if (password2.used) {
+            
             if (password2.value.length === 0) {
                 setPassword2Error({status: true, message: 'ورود تکرار رمز عبور الزامی است'});
             }
@@ -132,8 +139,9 @@ const Signup = (props) => {
                 onchange={(event) => {setPassword2({value: event.target.value, used: true})}} 
             />
             <ErrorText>{password2Error.message}</ErrorText>
-
-            <Button buttonType="button" className="btn btn-signup" click={() => props.signupClick(username.value, name.value, password1.value, password2.value, errorAll)}>ثبت نام</Button>
+            {console.log(errors)}
+            {console.log(noError)}
+            <Button disable={!noError} buttonType="button" className="btn btn-signup" click={() => props.signupClick(username.value, name.value, password1.value, password2.value, noError)}>ثبت نام</Button>
         </div>
     );
 };
