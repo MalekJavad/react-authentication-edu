@@ -38,9 +38,10 @@ const Signup = (props) => {
 
     // use effect for username
     useEffect(() => {
-        setUsernameError({status: false, message: ''});
+        // setUsernameError({status: false, message: ''});
 
         if(username.used) {
+
             if (username.value.length === 0) {
                 setUsernameError({status: true, message: 'ورود نام کاربری الزامی است'});
             }
@@ -49,9 +50,12 @@ const Signup = (props) => {
             }
             else {
                 const users = [...userContext.users];
-                const isExist = users.findIndex((user)=>{return user.username === username.value}) !== -1;
+                const isExist = users.findIndex((user) => {return user.username === username.value}) !== -1;
                 if (isExist) {
                     setUsernameError({status: true, message: 'نام کاربری از قبل وجود دارد'});
+                }
+                else {
+                    setUsernameError({status: false, message: ''})
                 }
             }
         }
@@ -60,11 +64,15 @@ const Signup = (props) => {
 
     // use effect for name
     useEffect(() => {
-        setNameError({status: false, message: ''}); 
+        // setNameError({status: false, message: ''}); 
+
         if (name.used) {   
 
             if (name.value.length === 0) {
                 setNameError({status: true, message: 'ورود نام و نام خانوادگی الزامی است'});
+            }
+            else {
+                setNameError({status: false, message: ''}); 
             }
         }
     }
@@ -72,7 +80,7 @@ const Signup = (props) => {
 
     // use effect for password1
     useEffect(() => {
-        setPassword1Error({status: false, message: ''});
+        // setPassword1Error({status: false, message: ''});
 
         if (password1.used) {
 
@@ -82,13 +90,16 @@ const Signup = (props) => {
             else if (password1.value.length < 4) {
                 setPassword1Error({status: true, message: 'طول رمز عبور باید حداقل 4 کاراکتر باشد'});
             }
+            else {
+                setPassword1Error({status: false, message: ''});
+            }
         }
     }
     , [password1]);
 
     // use effect for password2
     useEffect(() => {
-        setPassword2Error({status: false, message: ''});
+        // setPassword2Error({status: false, message: ''});
 
         if (password2.used) {
             
@@ -97,6 +108,9 @@ const Signup = (props) => {
             }
             else if (password2.value !== password1.value) {
                 setPassword2Error({status: true, message: 'تکرار رمز عبور وارد شده با رمز قبلی یکسان نیست'});
+            }
+            else {
+                setPassword2Error({status: false, message: ''});
             }
         }
     }
