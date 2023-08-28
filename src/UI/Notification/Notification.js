@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./Notification.css";
 
-const Notification = (props) => {
+import { NotificationContext } from "../../context/notification-context.js";
+import Button from "../Button/Button.js";
+
+const Notification = () => {
+    const notificationContext = useContext(NotificationContext);
+
     return (
         <div className="main-notification-box">
-            <div className={`notification-box notification-${props.type}`}>
-                <span className="notification-text">{props.children}</span>
+            <div className={`notification-box notification-${notificationContext.notif.type}`}>
+                <Button className="close" type="button" click={notificationContext.remover}><i class="fa fa-close" aria-hidden="true"></i></Button>
+                <span className="notification-text">{notificationContext.notif.message}</span>
             </div>
         </div>
     );

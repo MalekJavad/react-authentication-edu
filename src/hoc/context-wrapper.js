@@ -2,14 +2,17 @@ import React from "react";
 
 import UserContextProvider from "../context/user-context.js";
 import AuthContextProvider from "../context/auth-context.js";
+import NotificationContextProvider from "../context/notification-context.js";
 
 const ContextWrapper = (props) => {
     return (
-        <UserContextProvider>
-            <AuthContextProvider>
-                {props.children}
-            </AuthContextProvider>
-        </UserContextProvider>
+        <NotificationContextProvider>
+            <UserContextProvider>
+                <AuthContextProvider>
+                    {props.children}
+                </AuthContextProvider>
+            </UserContextProvider>
+        </NotificationContextProvider>
     );
 };
 

@@ -8,15 +8,15 @@ import Signup from '../../components/Signup/Signup.js';
 import Button from "../../UI/Button/Button.js";
 import Notification from "../../UI/Notification/Notification.js";
 import { UserContext } from "../../context/user-context.js";
-import UserContextProvider from "../../context/user-context.js";
 import { AuthContext } from "../../context/auth-context.js"
+import { NotificationContext } from "../../context/notification-context";
 
 const Auth = () => {
     const [authMethod, setAuthMethod] = useState('signup');
-    const [notification, setNotification] = useState({status: false, type: '', message: ''});
-
+    
     const userContext = useContext(UserContext);
     const authContext = useContext(AuthContext);
+    const notificationContext = useContext(NotificationContext);
 
     const toggleForm = (clicked) => {
         if (clicked !== authMethod) {
@@ -53,10 +53,10 @@ const Auth = () => {
                 password2: p2,
             };
             userContext.setUsers(newUser);
-            setNotification({status: true, type: 'successful', message: 'ثبت نام با موفقیت انجام شد'})
+            notificationContext.raiser({status: true, type: 'successful', message: 'ثبت نام با موفقیت انجام شد'})
         }
         else {
-            setNotification({status: true, type: 'error', message: 'خطا های فیلد ها را اصلاح کنید'});
+            notificationContext.raiser({status: true, type: 'error', message: 'خطا های فیلد ها را اصلاح کنید'});
         }
     };
 
@@ -80,14 +80,12 @@ const Auth = () => {
 
     return (
         <div className="auth">
-            {notification.status ? <Notification type={notification.type}>{notification.message}</Notification> : null}
+            {notificationContext.notif.status && <Notification />}
 
             {authContext.isLoggedIn ? <span className="list-login-error">شما از قبل وارد حساب کاربری خود شده اید.</span> : formPage}
             
             <div className="user-tab">
-                <UserContextProvider>
-                    <Link className="list-link" to="/users">لیست کاربران</Link>
-                </UserContextProvider>
+                <Link className="list-link" to="/users">لیست کاربران</Link>
             </div>
         </div>
     );

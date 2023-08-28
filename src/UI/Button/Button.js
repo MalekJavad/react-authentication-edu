@@ -7,13 +7,13 @@ const Button = (props) => {
 
     if (props.disable) {
         button = (
-            <button disabled type={props.buttonType} className={props.className}>
+            <button disabled type={props.buttonType} className={props.className} onClick={props.click}>
                 {props.children}
             </button>
         );
     } else {
         button = (
-            <button type={props.buttonType} className={props.className}>
+            <button type={props.buttonType} className={props.className} onClick={props.click}>
                 {props.children}
             </button>
         );
