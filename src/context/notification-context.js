@@ -13,11 +13,16 @@ const NotificationContextProvider = (props) => {
         setNotification({status: false, type: '', message: ''});
     }
 
+    const notifRaiser = (notif) => {
+        notifRemover();
+        setTimeout(() => setNotification({status: notif.status, type: notif.type, message: notif.message}) , 10)
+    }
+
     return (
         <NotificationContext.Provider
             value={{
                 notif: notification,
-                raiser: setNotification,
+                raiser: notifRaiser,
                 remover: notifRemover,
             }}        
         >

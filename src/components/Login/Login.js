@@ -28,9 +28,6 @@ const Login = (props) => {
         setPassword({value: '', used: false});
         setUsernameError({status: true, message: ''});
         setPasswordError({status: true, message: ''});
-        //notificationContext.remover();
-        console.log('login ue')
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props])
 
     // use effect for username

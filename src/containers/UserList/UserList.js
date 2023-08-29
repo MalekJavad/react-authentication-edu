@@ -1,22 +1,13 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom";
 
 import './UserList.css'
 import UserItems from '../../components/UserItems/UserItems.js';
 import { AuthContext } from '../../context/auth-context.js';
-import { NotificationContext } from "../../context/notification-context.js";
-
 
 const Users = () => { 
     const authContext = useContext(AuthContext);
-    const notificationContext = useContext(NotificationContext);
     
-    useEffect(() => {
-        notificationContext.remover();
-        console.log('user list ue')
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
     return (
         <div className="list">
             <div className="list-head">
