@@ -15,7 +15,8 @@ const NotificationContextProvider = (props) => {
 
     const notifRaiser = (notif) => {
         notifRemover();
-        setTimeout(() => setNotification({status: notif.status, type: notif.type, message: notif.message}) , 10)
+        setTimeout(() => setNotification({status: notif.status, type: notif.type, message: notif.message}) , 10);
+        setTimeout(() => {notifRemover()}, 2000);
     }
 
     return (
