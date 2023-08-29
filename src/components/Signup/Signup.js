@@ -35,7 +35,6 @@ const Signup = (props) => {
         setNameError({status: true, message: ''});
         setPassword1Error({status: true, message: ''});
         setPassword2Error({status: true, message: ''}); 
-        console.log('refreshed')
     }, [props])
 
     // use effect for username

@@ -11,7 +11,7 @@ const Notification = () => {
     return (
         <div className="main-notification-box">
             <div className={`notification-box notification-${notificationContext.notif.type}`}>
-                <Button className="close" type="button" click={notificationContext.remover}><i class="fa fa-close" aria-hidden="true"></i></Button>
+                <Button className="close" type="button" click={notificationContext.remover}><i className="fa fa-close" aria-hidden="true"></i></Button>
                 <span className="notification-text">{notificationContext.notif.message}</span>
             </div>
         </div>
