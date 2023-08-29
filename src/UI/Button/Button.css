@@ -25,7 +25,7 @@
     background-color: rgb(163, 175, 238);   
 }
 
-.btn-login {
+.btn-login, .btn-signup {
     width: 55%;
     height: 3rem;
     text-align: center;
@@ -34,11 +34,10 @@
     background-color: rgb(127, 146, 252);   
 }
 
-.btn-signup {
-    width: 55%;
+.btn-logout {
+    width: 20%;
     height: 3rem;
     text-align: center;
     margin: 1rem auto auto 0px;
-    padding: 10px;
-    background-color: rgb(127, 146, 252);   
+    background-color: rgb(253, 113, 70);  
 }

@@ -5,6 +5,7 @@ import "./Auth.css";
 
 import Login from '../../components/Login/Login.js';
 import Signup from '../../components/Signup/Signup.js';
+import Panel from "../../components/Panel/Panel";
 import Button from "../../UI/Button/Button.js";
 import Notification from "../../UI/Notification/Notification.js";
 import { UserContext } from "../../context/user-context.js";
@@ -30,7 +31,7 @@ const Auth = () => {
             const index = users.findIndex((user) => {return user.username===u});
             const foundUser = users[index];
             if (foundUser.password1 === p) {
-                authContext.login(true);
+                authContext.login();
                 notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت وارد شدید'});
             } 
             else {
@@ -58,6 +59,11 @@ const Auth = () => {
         }
     };
 
+    const logoutAction = () => {
+        authContext.logout();
+        notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت از حساب خود خارج شدید'});
+    }
+
     const formPage = (
         <div className="form-wrapper">
             <div className="tab">
@@ -80,7 +86,7 @@ const Auth = () => {
         <div className="auth">
             {notificationContext.notif.status && <Notification />}
 
-            {authContext.isLoggedIn ? <span className="title">پنل کاربری</span> : formPage}
+            {authContext.isLoggedIn ? <Panel logoutClick={logoutAction} /> : formPage}
             
             <div className="user-tab">
                 <Link className="list-link" to="/users">لیست کاربران</Link>
