@@ -134,7 +134,7 @@ const Signup = (props) => {
             <ErrorText>{nameError.message}</ErrorText>
 
             <Input 
-                inputType="password" 
+                inputType="password1"
                 className={`input ${password1Error.status && password1.used ? "error" : ''}`}
                 inputPlaceholder="رمز عبور"
                 inputValue={password1.value} 
@@ -143,7 +143,7 @@ const Signup = (props) => {
             <ErrorText>{password1Error.message}</ErrorText>
 
             <Input 
-                inputType="password" 
+                inputType="password2"
                 className={`input ${password2Error.status && password2.used ? "error" : ''}`}
                 inputPlaceholder="تکرار رمز عبور"
                 inputValue={password2.value} 

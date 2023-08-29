@@ -13,3 +13,19 @@
 .error {
     border: 1px solid red;
 }
+
+.password-input-wrapper {
+    position: relative;
+}
+
+.show-password {
+    cursor: pointer;
+    background-color: inherit;
+    padding: 0;
+    border: none;
+    color: rgb(165, 163, 163);
+    position: absolute;
+    left: 13%;
+    top: 38%;
+    font-size: 17px;
+}

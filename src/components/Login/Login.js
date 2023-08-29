@@ -88,7 +88,7 @@ const Login = (props) => {
             <ErrorText>{usernameError.message}</ErrorText>
 
             <Input 
-                inputType="password" 
+                inputType="password1" 
                 className={`input ${passwordError.status && password.used ? 'error' : ''}`} 
                 inputPlaceholder="رمز عبور"
                 inputValue={password.value} 
