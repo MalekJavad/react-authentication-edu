@@ -26,7 +26,7 @@ const Users = () => {
                 </Link>
             </div>
             {
-                !authContext.isLoggedIn ?
+                authContext.isLoggedIn ?
                 <UserItems />
                 :
                 <span className="list-login-error">برای دیدن لیست کاربران، وارد حساب کاربری خود شوید.</span>

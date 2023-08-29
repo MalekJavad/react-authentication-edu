@@ -24,24 +24,22 @@ const Auth = () => {
         }
     }
 
-    const loginAction = (u, p) => {
-        const users = [...userContext.users];
-        const index = users.findIndex((user) => {return user.username===u});
-        if (index === -1) {
-            console.log('Username not found');
-            return "Username not found";
+    const loginAction = (u, p, noError) => {
+        if (noError) {
+            const users = [...userContext.users];
+            const index = users.findIndex((user) => {return user.username===u});
+            const foundUser = users[index];
+            if (foundUser.password1 === p) {
+                authContext.login(true);
+                notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت وارد شدید'});
+            } 
+            else {
+                notificationContext.raiser({status: true, type: 'error', message: 'رمز عبور وارد شده اشتباه است'})
+            }
+        } 
+        else {
+            notificationContext.raiser({status: true, type: 'error', message: 'لطفا خطا های فیلد ها را اصلاح کنید'})
         }
-
-        const foundUser = users[index];
-
-        if (foundUser.password1 !== p) {
-            console.log('Incorrect Password');
-            return "Incorrect Password";
-        }
-
-        authContext.login(true);
-
-        console.log('logged in');
     };
 
     const signupAction = (u, n, p1, p2, noError) => {
@@ -82,7 +80,7 @@ const Auth = () => {
         <div className="auth">
             {notificationContext.notif.status && <Notification />}
 
-            {authContext.isLoggedIn ? <span className="list-login-error">شما از قبل وارد حساب کاربری خود شده اید.</span> : formPage}
+            {authContext.isLoggedIn ? <span className="title">پنل کاربری</span> : formPage}
             
             <div className="user-tab">
                 <Link className="list-link" to="/users">لیست کاربران</Link>
