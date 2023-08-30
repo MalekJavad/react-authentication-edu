@@ -1,7 +1,17 @@
-.error-text {
-    color: red;
+.text {
     font-size: small;
     text-align: right;
     margin-right: 10%;
 }
 
+.hint-text {
+    color: black;
+}
+
+.error-text {
+    color: red;
+}
+
+.ok-text {
+    color: rgb(53, 175, 53);
+}

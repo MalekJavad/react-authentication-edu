@@ -13,21 +13,20 @@ const Login = (props) => {
     const [username, setUsername] = useState({value: '', used: false});
     const [password, setPassword] = useState({value: '', used: false});
 
-    const [usernameError, setUsernameError] = useState({status: true, message: ''});
-    const [passwordError, setPasswordError] = useState({status: true, message: ''});
+    const [usernameError, setUsernameError] = useState({status: true, message: '', type: ''});
+    const [passwordError, setPasswordError] = useState({status: true, message: '', type: ''});
 
     const errors = [usernameError.status, passwordError.status];
     const noError = errors.every(item => item===false);
 
-    // const notificationContext = useContext(NotificationContext);
     const userContext = useContext(UserContext);
 
     // use effect fot each load
     useEffect(() => {
         setUsername({value: '', used: false});
         setPassword({value: '', used: false});
-        setUsernameError({status: true, message: ''});
-        setPasswordError({status: true, message: ''});
+        setUsernameError({status: true, message: 'نام کاربری خود را وارد کنید', type: 'hint'});
+        setPasswordError({status: true, message: 'رمز عبور خود را وارد کنید', type: 'hint'});
     }, [props])
 
     // use effect for username
@@ -35,19 +34,19 @@ const Login = (props) => {
         if (username.used) {
             console.log('in username ue')
             if (username.value.length === 0) {
-                setUsernameError({status: true, message: 'ورود نام کاربری الزامی است'});
+                setUsernameError({status: true, message: 'ورود نام کاربری الزامی است', type: 'error'});
             }
             else if (username.value.indexOf(' ') >= 0) {
-                setUsernameError({status: true, message: 'نام کاربری نمی تواند دارای فاصله باشد'});
+                setUsernameError({status: true, message: 'نام کاربری نمی تواند دارای فاصله باشد', type: 'error'});
             }
             else {
                 const users = [...userContext.users];
                 const isExist = users.findIndex((user) => {return user.username === username.value}) !== -1;
                 if (!isExist) {
-                    setUsernameError({status: true, message: 'کاربری با این نام کاربری یافت نشد'});
+                    setUsernameError({status: true, message: 'کاربری با این نام کاربری یافت نشد', type: 'error'});
                 }
                 else {
-                    setUsernameError({status: false, message: ''});
+                    setUsernameError({status: false, message: 'نام کاربری یافت شد', type: 'ok'});
                 }
             }
         }
@@ -57,13 +56,13 @@ const Login = (props) => {
     useEffect(() => {
         if (password.used) {
             if (password.value.length === 0) {
-                setPasswordError({status: true, message: 'ورود رمز عبور الزامی است'});
+                setPasswordError({status: true, message: 'ورود رمز عبور الزامی است', type: 'error'});
             }
             else if (password.value.length < 4) {
-                setPasswordError({status: true, message: 'رمز عبور باید حداقل 4 کاراکتر باشد'});
+                setPasswordError({status: true, message: 'رمز عبور باید حداقل 4 کاراکتر باشد', type: 'error'});
             }
             else {
-                setPasswordError({status: false, message: ''});
+                setPasswordError({status: false, message: 'رمز عبور قابل قبول است', type: 'ok'});
             }
         }
     }, [password]);
@@ -82,7 +81,7 @@ const Login = (props) => {
                 inputValue={username.value} 
                 onchange={(event) => {setUsername({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{usernameError.message}</ErrorText>
+            <ErrorText type={usernameError.type}>{usernameError.message}</ErrorText>
 
             <Input 
                 inputType="password1" 
@@ -91,7 +90,7 @@ const Login = (props) => {
                 inputValue={password.value} 
                 onchange={(event) => {setPassword({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{passwordError.message}</ErrorText>
+            <ErrorText type={passwordError.type}>{passwordError.message}</ErrorText>
 
             <Button disable={!noError} buttonType="submit" className="btn btn-login">ورود</Button>
         </form>

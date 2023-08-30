@@ -15,10 +15,10 @@ const Signup = (props) => {
     const [password1, setPassword1] = useState({value: '', used: false});
     const [password2, setPassword2] = useState({value: '', used: false});
 
-    const [usernameError, setUsernameError] = useState({status: true, message: ''});
-    const [nameError, setNameError] = useState({status: true, message: ''});
-    const [password1Error, setPassword1Error] = useState({status: true, message: ''});
-    const [password2Error, setPassword2Error] = useState({status: true, message: ''});
+    const [usernameError, setUsernameError] = useState({status: true, message: '', type: ''});
+    const [nameError, setNameError] = useState({status: true, message: '', type: ''});
+    const [password1Error, setPassword1Error] = useState({status: true, message: '', type: ''});
+    const [password2Error, setPassword2Error] = useState({status: true, message: '', type: ''});
 
     const errors = [usernameError.status, nameError.status, password1Error.status, password2Error.status];
     const noError = errors.every(item => item===false);
@@ -31,29 +31,29 @@ const Signup = (props) => {
         setName({value: '', used: false});
         setPassword1({value: '', used: false});
         setPassword2({value: '', used: false});
-        setUsernameError({status: true, message: ''});
-        setNameError({status: true, message: ''});
-        setPassword1Error({status: true, message: ''});
-        setPassword2Error({status: true, message: ''}); 
+        setUsernameError({status: true, message: 'نام کاربری خود را بدون فاصله وارد کنید', type: 'hint'});
+        setNameError({status: true, message: 'نام و نام خانوادگی کامل خود را وارد کنید', type: 'hint'});
+        setPassword1Error({status: true, message: 'رمز عبوری با حداقل 4 کاراکتر وارد کنید', type: 'hint'});
+        setPassword2Error({status: true, message: 'دوباره رمز عبور خود را جهت تایید وارد کنید', type: 'hint'}); 
     }, [props])
 
     // use effect for username
     useEffect(() => {
         if(username.used) {
             if (username.value.length === 0) {
-                setUsernameError({status: true, message: 'ورود نام کاربری الزامی است'});
+                setUsernameError({status: true, message: 'ورود نام کاربری الزامی است', type: 'error'});
             }
             else if (username.value.indexOf(' ') >= 0) {
-                setUsernameError({status: true, message: 'نام کاربری نمی تواند داری فاصله باشد'});
+                setUsernameError({status: true, message: 'نام کاربری نمی تواند داری فاصله باشد', type: 'error'});
             }
             else {
                 const users = [...userContext.users];
                 const isExist = users.findIndex((user) => {return user.username === username.value}) !== -1;
                 if (isExist) {
-                    setUsernameError({status: true, message: 'نام کاربری از قبل وجود دارد'});
+                    setUsernameError({status: true, message: 'نام کاربری از قبل وجود دارد', type: 'error'});
                 }
                 else {
-                    setUsernameError({status: false, message: ''})
+                    setUsernameError({status: false, message: 'نام کاربری قابل قبول است', type: 'ok'});
                 }
             }
         }
@@ -65,10 +65,10 @@ const Signup = (props) => {
         if (name.used) {   
 
             if (name.value.length === 0) {
-                setNameError({status: true, message: 'ورود نام و نام خانوادگی الزامی است'});
+                setNameError({status: true, message: 'ورود نام و نام خانوادگی الزامی است', type: 'error'});
             }
             else {
-                setNameError({status: false, message: ''}); 
+                setNameError({status: false, message: 'نام و نام خانوادگی قابل قبول است', type: 'ok'});
             }
         }
     }
@@ -79,13 +79,13 @@ const Signup = (props) => {
         if (password1.used) {
 
             if (password1.value.length === 0) {
-                setPassword1Error({status: true, message: 'ورود رمز عبور الزامی است'});
+                setPassword1Error({status: true, message: 'ورود رمز عبور الزامی است', type: 'error'});
             }
             else if (password1.value.length < 4) {
-                setPassword1Error({status: true, message: 'طول رمز عبور باید حداقل 4 کاراکتر باشد'});
+                setPassword1Error({status: true, message: 'طول رمز عبور باید حداقل 4 کاراکتر باشد', type: 'error'});
             }
             else {
-                setPassword1Error({status: false, message: ''});
+                setPassword1Error({status: false, message: 'رمز عبور قابل قبول است', type: 'ok'});
             }
         }
     }
@@ -96,13 +96,13 @@ const Signup = (props) => {
         if (password2.used) {
             
             if (password2.value.length === 0) {
-                setPassword2Error({status: true, message: 'ورود تکرار رمز عبور الزامی است'});
+                setPassword2Error({status: true, message: 'ورود تکرار رمز عبور الزامی است', type: 'error'});
             }
             else if (password2.value !== password1.value) {
-                setPassword2Error({status: true, message: 'تکرار رمز عبور وارد شده با رمز قبلی یکسان نیست'});
+                setPassword2Error({status: true, message: 'تکرار رمز عبور وارد شده با رمز قبلی یکسان نیست', type: 'error'});
             }
             else {
-                setPassword2Error({status: false, message: ''});
+                setPassword2Error({status: false, message: 'تکرار رمز عبور قابل قبول است', type: 'ok'});
             }
         }
     }
@@ -122,7 +122,7 @@ const Signup = (props) => {
                 inputValue={username.value} 
                 onchange={(event) => {setUsername({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{usernameError.status && username.used ? usernameError.message : ''}</ErrorText>
+            <ErrorText type={usernameError.type}>{usernameError.message}</ErrorText>
 
             <Input 
                 inputType="text" 
@@ -131,7 +131,7 @@ const Signup = (props) => {
                 inputValue={name.value} 
                 onchange={(event) => {setName({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{nameError.message}</ErrorText>
+            <ErrorText type={nameError.type}>{nameError.message}</ErrorText>
 
             <Input 
                 inputType="password1"
@@ -140,7 +140,7 @@ const Signup = (props) => {
                 inputValue={password1.value} 
                 onchange={(event) => {setPassword1({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{password1Error.message}</ErrorText>
+            <ErrorText type={password1Error.type}>{password1Error.message}</ErrorText>
 
             <Input 
                 inputType="password2"
@@ -149,7 +149,7 @@ const Signup = (props) => {
                 inputValue={password2.value} 
                 onchange={(event) => {setPassword2({value: event.target.value, used: true})}} 
             />
-            <ErrorText>{password2Error.message}</ErrorText>
+            <ErrorText type={password2Error.type}>{password2Error.message}</ErrorText>
 
             <Button disable={!noError} buttonType="submit" className="btn btn-signup">ثبت نام</Button>
         </form>

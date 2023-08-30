@@ -4,7 +4,7 @@ import "./ErrorText.css";
 
 const ErrorText = (props) => {
     return (
-        <p className="error-text">
+        <p className={`text ${props.type}-text`}>
             {props.children}
         </p>
     );
