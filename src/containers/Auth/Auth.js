@@ -18,7 +18,7 @@ const Auth = () => {
     const userContext = useContext(UserContext);
     const authContext = useContext(AuthContext);
     const notificationContext = useContext(NotificationContext);
-
+    console.log()
     const toggleForm = (clicked) => {
         if (clicked !== authMethod) {
             setAuthMethod(clicked);
@@ -32,14 +32,14 @@ const Auth = () => {
             const foundUser = users[index];
             if (foundUser.password1 === p) {
                 authContext.login();
-                notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت وارد شدید'});
+                notificationContext.raiser({type: 'successful', message: 'با موفقیت وارد شدید'});
             } 
             else {
-                notificationContext.raiser({status: true, type: 'error', message: 'رمز عبور وارد شده اشتباه است'})
+                notificationContext.raiser({type: 'error', message: 'رمز عبور وارد شده اشتباه است'});
             }
         } 
         else {
-            notificationContext.raiser({status: true, type: 'error', message: 'لطفا خطا های فیلد ها را اصلاح کنید'})
+            notificationContext.raiser({type: 'error', message: 'لطفا خطا های فیلد ها را اصلاح کنید'});
         }
     };
 
@@ -52,16 +52,16 @@ const Auth = () => {
                 password2: p2,
             };
             userContext.setUsers(newUser);
-            notificationContext.raiser({status: true, type: 'successful', message: 'ثبت نام با موفقیت انجام شد'})
+            notificationContext.raiser({type: 'successful', message: 'ثبت نام با موفقیت انجام شد'});
         }
         else {
-            notificationContext.raiser({status: true, type: 'error', message: 'خطا های فیلد ها را اصلاح کنید'});
+            notificationContext.raiser({type: 'error', message: 'خطا های فیلد ها را اصلاح کنید'});
         }
     };
 
     const logoutAction = () => {
         authContext.logout();
-        notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت از حساب خود خارج شدید'});
+        notificationContext.raiser({type: 'successful', message: 'با موفقیت از حساب خود خارج شدید'});
     }
 
     const formPage = (

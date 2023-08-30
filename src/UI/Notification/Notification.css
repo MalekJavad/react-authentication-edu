@@ -5,15 +5,31 @@
     padding: 1rem;
     position: absolute;
     top: 2rem;
-    animation: comeInOut 1s ;
 }
 
-@keyframes comeInOut {
+.mount-animation {
+    animation: In 1s ;
+}
+
+.unmount-animation {
+    animation: Out 1s ;
+}
+
+@keyframes In {
     0% {
         top: -5rem;
     }
     100% {
-        top: 3rem;
+        top: 2rem;
+    }
+}
+
+@keyframes Out {
+    0% {
+        top: 2rem;
+    }
+    100% {
+        top: -5rem;
     }
 }
 
