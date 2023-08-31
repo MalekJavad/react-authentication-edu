@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 export const NotificationContext = React.createContext({
     notif: {status: false, type: '', message: '', animation: 'unmount'},
@@ -8,30 +8,29 @@ export const NotificationContext = React.createContext({
 
 const NotificationContextProvider = (props) => {
     const [notification, setNotification] = useState({status: false, type: '', message: '', animation: 'unmount'});
+    const autoDelete = useRef(null);
 
     const notifEliminator = () => {
         setNotification({status: false, type: '', message: '', animation: ''});
     }
 
     const notifRemover = (notif) => {
-        if (notif) {
-            console.log(notif); 
-            setNotification({status: true, type: notif.type, message: notif.message, animation: 'unmount'});
-        } 
-        else {
-            setNotification({status: true, type: notification.type, message: notification.message, animation: 'unmount'});
-        }
+        autoDelete.current = false;
+        setNotification({status: true, type: notif.type, message: notif.message, animation: 'unmount'});
         setTimeout(() => {
             notifEliminator();
         }, 400)
     }
 
     const notifRaiser = (notif) => {
+        autoDelete.current = true;
         notifEliminator();
-        setTimeout(() => setNotification({status: true, type: notif.type, message: notif.message, animation: 'mount'}) , 10);
+        setTimeout(() => setNotification({status: notif.status, type: notif.type, message: notif.message, animation: 'mount'}) , 10);
         setTimeout(() => {
-            if (notif)
-        }, 2000);
+            if (autoDelete.current) {
+                notifRemover(notif);
+            }
+        }, 5000);
     }
 
     return (
