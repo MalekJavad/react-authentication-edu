@@ -6,7 +6,7 @@ import "./App.css";
 import Auth from "./containers/Auth/Auth.js";
 import Users from "./containers/UserList/UserList.js";
 
-import ContextWrapper from "./hoc/context-wrapper.js"
+import ContextWrapper from "./hoc/context-wrapper.js";
 
 
 const App = () => {

@@ -12,10 +12,11 @@ const AuthContextProvider = (props) => {
 
     const doLogin = () => {
         setIsLoggedIn(true);
-    }
+    };
+
     const doLogout = () => {
         setIsLoggedIn(false);
-    }
+    };
 
     return (
         <AuthContext.Provider

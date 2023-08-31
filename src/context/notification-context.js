@@ -12,15 +12,15 @@ const NotificationContextProvider = (props) => {
 
     const notifEliminator = () => {
         setNotification({status: false, type: '', message: '', animation: ''});
-    }
+    };
 
     const notifRemover = (notif) => {
         autoDelete.current = false;
-        setNotification({status: true, type: notif.type, message: notif.message, animation: 'unmount'});
+        setNotification({status: true, type: notif.type, message: '', animation: 'unmount'});
         setTimeout(() => {
             notifEliminator();
-        }, 400)
-    }
+        }, 400);
+    };
 
     const notifRaiser = (notif) => {
         autoDelete.current = true;
@@ -30,8 +30,8 @@ const NotificationContextProvider = (props) => {
             if (autoDelete.current) {
                 notifRemover(notif);
             }
-        }, 5000);
-    }
+        }, 2000);
+    };
 
     return (
         <NotificationContext.Provider

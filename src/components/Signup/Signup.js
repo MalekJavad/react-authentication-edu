@@ -35,7 +35,7 @@ const Signup = (props) => {
         setNameError({status: true, message: 'نام و نام خانوادگی کامل خود را وارد کنید', type: 'hint'});
         setPassword1Error({status: true, message: 'رمز عبوری با حداقل 4 کاراکتر وارد کنید', type: 'hint'});
         setPassword2Error({status: true, message: 'دوباره رمز عبور خود را جهت تایید وارد کنید', type: 'hint'}); 
-    }, [props])
+    }, [props]);
 
     // use effect for username
     useEffect(() => {
@@ -63,7 +63,6 @@ const Signup = (props) => {
     // use effect for name
     useEffect(() => {
         if (name.used) {   
-
             if (name.value.length === 0) {
                 setNameError({status: true, message: 'ورود نام و نام خانوادگی الزامی است', type: 'error'});
             }
@@ -77,7 +76,6 @@ const Signup = (props) => {
     // use effect for password1
     useEffect(() => {
         if (password1.used) {
-
             if (password1.value.length === 0) {
                 setPassword1Error({status: true, message: 'ورود رمز عبور الزامی است', type: 'error'});
             }
@@ -94,7 +92,6 @@ const Signup = (props) => {
     // use effect for password2
     useEffect(() => {
         if (password2.used) {
-            
             if (password2.value.length === 0) {
                 setPassword2Error({status: true, message: 'ورود تکرار رمز عبور الزامی است', type: 'error'});
             }
@@ -111,7 +108,7 @@ const Signup = (props) => {
     const formSubmitHandler = (event) => {
         event.preventDefault();
         props.signupClick(username.value, name.value, password1.value, password2.value, noError);
-    }
+    };
 
     return (
         <form className="signup" onSubmit={(event) => formSubmitHandler(event)}>

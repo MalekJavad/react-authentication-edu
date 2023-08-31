@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 
 import "./Notification.css";
 
-import { NotificationContext } from "../../context/notification-context.js";
 import Button from "../Button/Button.js";
+
+import { NotificationContext } from "../../context/notification-context.js";
+
 
 const Notification = () => {
     const notificationContext = useContext(NotificationContext);

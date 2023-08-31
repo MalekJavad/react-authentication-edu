@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
+import React, { useContext } from "react";
 
-import './UserItems.css'
+import './UserItems.css';
 import { UserContext } from "../../context/user-context";
 import UserItem from "../../components/UserItem/UserItem.js";
 
 
 const UserItems = () => {
-    const userContext = useContext(UserContext)
+    const userContext = useContext(UserContext);
 
     return (
         <div className="user-list">

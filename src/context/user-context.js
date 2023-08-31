@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 export const UserContext = React.createContext({
     users: [],
-    setUsers: () => {}
-})
+    setUsers: () => {},
+});
 
 const UserContextProvider = (props) => {
     const [users, setUsers] = useState([]);
@@ -12,7 +12,7 @@ const UserContextProvider = (props) => {
         let prevUsers = [...users];
         prevUsers.push(user);
         setUsers(prevUsers);
-    }
+    };
 
     return (
         <UserContext.Provider
@@ -23,9 +23,8 @@ const UserContextProvider = (props) => {
         >
             {props.children}
         </UserContext.Provider>
-    )
-
-}
+    );
+};
 
 export default UserContextProvider;
  

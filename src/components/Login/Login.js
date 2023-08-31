@@ -6,7 +6,6 @@ import Input from '../../UI/Input/Input.js';
 import Button from '../../UI/Button/Button.js';
 import ErrorText from "../../UI/ErrorText/ErrorText";
 
-// import { NotificationContext } from "../../context/notification-context.js";
 import { UserContext } from "../../context/user-context";
 
 const Login = (props) => {
@@ -27,12 +26,11 @@ const Login = (props) => {
         setPassword({value: '', used: false});
         setUsernameError({status: true, message: 'نام کاربری خود را وارد کنید', type: 'hint'});
         setPasswordError({status: true, message: 'رمز عبور خود را وارد کنید', type: 'hint'});
-    }, [props])
+    }, [props]);
 
     // use effect for username
     useEffect(() => {
         if (username.used) {
-            console.log('in username ue')
             if (username.value.length === 0) {
                 setUsernameError({status: true, message: 'ورود نام کاربری الزامی است', type: 'error'});
             }
@@ -70,7 +68,7 @@ const Login = (props) => {
     const formSubmitHandler = (event) => {
         event.preventDefault();
         props.loginClick(username.value, password.value, noError);
-    }
+    };
 
     return (
         <form className="login" onSubmit={formSubmitHandler}>

@@ -8,8 +8,9 @@ import Signup from '../../components/Signup/Signup.js';
 import Panel from "../../components/Panel/Panel";
 import Button from "../../UI/Button/Button.js";
 import Notification from "../../UI/Notification/Notification.js";
+
 import { UserContext } from "../../context/user-context.js";
-import { AuthContext } from "../../context/auth-context.js"
+import { AuthContext } from "../../context/auth-context.js";
 import { NotificationContext } from "../../context/notification-context";
 
 const Auth = () => {
@@ -18,11 +19,12 @@ const Auth = () => {
     const userContext = useContext(UserContext);
     const authContext = useContext(AuthContext);
     const notificationContext = useContext(NotificationContext);
+
     const toggleForm = (clicked) => {
         if (clicked !== authMethod) {
             setAuthMethod(clicked);
         }
-    }
+    };
 
     const loginAction = (u, p, noError) => {
         if (noError) {
@@ -61,7 +63,7 @@ const Auth = () => {
     const logoutAction = () => {
         authContext.logout();
         notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت از حساب خود خارج شدید'});
-    }
+    };
 
     const formPage = (
         <div className="form-wrapper">
@@ -79,7 +81,7 @@ const Auth = () => {
                 }
             </div>
         </div>
-    )
+    );
 
     return (
         <div className="auth">

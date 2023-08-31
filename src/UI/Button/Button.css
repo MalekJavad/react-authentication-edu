@@ -12,7 +12,6 @@ button:disabled {
     color: rgb(114, 114, 114);
 }
 
-
 .toggle-signup , .toggle-login  {
     width: 40%;
     height: 2rem;

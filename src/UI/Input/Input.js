@@ -8,11 +8,11 @@ const Input = (props) => {
 
     const toggleShowPassword1 = () => {
         setPasswordShow1(!passwordShow1);
-    }
+    };
 
     const toggleShowPassword2 = () => {
         setPasswordShow2(!passwordShow2);
-    }
+    };
 
     let input = null;
     switch(props.inputType) {
@@ -28,7 +28,7 @@ const Input = (props) => {
                     />
                     <span className="show-password" onClick={toggleShowPassword1}><i className="fa fa-eye" aria-hidden="true"></i></span>
                 </div>
-            )
+            );
         break;
 
         case 'password2': 
@@ -43,7 +43,7 @@ const Input = (props) => {
                 />
                 <span className="show-password" onClick={toggleShowPassword2}><i className="fa fa-eye" aria-hidden="true"></i></span>
             </div>
-        )
+        );
         break;
 
         case 'text': 
@@ -55,7 +55,7 @@ const Input = (props) => {
                     onChange={props.onchange} 
                     placeholder={props.inputPlaceholder}
                 />
-            )
+            );
         break;
 
         default: 
@@ -67,7 +67,7 @@ const Input = (props) => {
                     onChange={props.onchange} 
                     placeholder={props.inputPlaceholder}
                 />
-            )
+            );
         break;
     }
 
