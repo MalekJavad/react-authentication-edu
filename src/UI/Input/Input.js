@@ -26,7 +26,7 @@ const Input = (props) => {
                         onChange={props.onchange}
                         placeholder={props.inputPlaceholder}
                     />
-                    <span className="show-password" onClick={toggleShowPassword1}><i className="fa fa-eye" aria-hidden="true"></i></span>
+                    <span className="show-password" onClick={toggleShowPassword1}><i className={`fa fa-eye${passwordShow1 === true ? "-slash" : ""}`} aria-hidden="true"></i></span>
                 </div>
             );
         break;
@@ -41,7 +41,7 @@ const Input = (props) => {
                     onChange={props.onchange}
                     placeholder={props.inputPlaceholder}
                 />
-                <span className="show-password" onClick={toggleShowPassword2}><i className="fa fa-eye" aria-hidden="true"></i></span>
+                <span className="show-password" onClick={toggleShowPassword2}><i className={`fa fa-eye${passwordShow2 === true ? "-slash" : ""}`} aria-hidden="true"></i></span>
             </div>
         );
         break;
