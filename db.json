@@ -1,13 +1,18 @@
 {
-    "users": [
-        {
-
-        },
-        {
-
-        },
-        {
-            
-        }
-    ]
+  "users": [
+    {
+      "id": 407,
+      "username": "javad",
+      "name": "mohammad javad malek",
+      "password1": "1234",
+      "password2": "1234"
+    },
+    {
+      "id": 88,
+      "username": "sara",
+      "name": "rezaee",
+      "password1": "1010",
+      "password2": "1010"
+    }
+  ]
 }

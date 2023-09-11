@@ -38,14 +38,21 @@ const Login = (props) => {
                 setUsernameError({status: true, message: 'نام کاربری نمی تواند دارای فاصله باشد', type: 'error'});
             }
             else {
-                const users = [...userContext.users];
-                const isExist = users.findIndex((user) => {return user.username === username.value}) !== -1;
-                if (!isExist) {
-                    setUsernameError({status: true, message: 'کاربری با این نام کاربری یافت نشد', type: 'error'});
-                }
-                else {
-                    setUsernameError({status: false, message: 'نام کاربری یافت شد', type: 'ok'});
-                }
+                let users = [];
+                fetch('http://localhost:8000/users') 
+                .then((response) => {
+                    response.json()
+                    .then(responseData => {
+                        users = responseData;
+                        const isExist = users.findIndex((user) => {return user.username === username.value}) !== -1;
+                        if (!isExist) {
+                            setUsernameError({status: true, message: 'کاربری با این نام کاربری یافت نشد', type: 'error'});
+                        }
+                        else {
+                            setUsernameError({status: false, message: 'نام کاربری یافت شد', type: 'ok'});
+                        }
+                    })
+                })
             }
         }
     }, [username, userContext.users]);

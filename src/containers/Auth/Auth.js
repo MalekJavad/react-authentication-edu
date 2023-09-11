@@ -16,7 +16,7 @@ import { NotificationContext } from "../../context/notification-context";
 const Auth = () => {
     const [authMethod, setAuthMethod] = useState('signup');
     
-    const userContext = useContext(UserContext);
+    // const userContext = useContext(UserContext);
     const authContext = useContext(AuthContext);
     const notificationContext = useContext(NotificationContext);
 
@@ -27,33 +27,54 @@ const Auth = () => {
     };
 
     const loginAction = (u, p, noError) => {
-        if (noError) {
-            const users = [...userContext.users];
-            const index = users.findIndex((user) => {return user.username===u});
-            const foundUser = users[index];
-            if (foundUser.password1 === p) {
-                authContext.login();
-                notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت وارد شدید'});
-            } 
-            else {
-                notificationContext.raiser({status: true, type: 'error', message: 'رمز عبور وارد شده اشتباه است'});
-            }
-        } 
-        else {
-            notificationContext.raiser({status: true, type: 'error', message: 'لطفا خطا های فیلد ها را اصلاح کنید'});
-        }
+        let users = [];
+
+        fetch('http://localhost:8000/users') 
+        .then((response) => {
+            response.json()
+            .then(responseData => {
+                users = responseData;
+                if (noError) {
+                    const index = users.findIndex((user) => {return user.username===u});
+                    const foundUser = users[index];
+                    if (foundUser.password1 === p) {
+                        authContext.login();
+                        notificationContext.raiser({status: true, type: 'successful', message: 'با موفقیت وارد شدید'});
+                    } 
+                    else {
+                        notificationContext.raiser({status: true, type: 'error', message: 'رمز عبور وارد شده اشتباه است'});
+                    }
+                    } 
+                    else {
+                        notificationContext.raiser({status: true, type: 'error', message: 'لطفا خطا های فیلد ها را اصلاح کنید'});
+                    }
+            })
+        });
     };
 
     const signupAction = (u, n, p1, p2, noError) => {
         if (noError) {
             const newUser = {
+                id: Math.floor(Math.random() * 1000),
                 username: u,
                 name: n,
                 password1: p1,
                 password2: p2,
             };
-            userContext.setUsers(newUser);
-            notificationContext.raiser({status: true, type: 'successful', message: 'ثبت نام با موفقیت انجام شد'});
+            fetch('http://localhost:8000/users', {
+                method: 'POST',
+                body: JSON.stringify(newUser),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then((response) => {
+                response.json()
+                .then(responseData => {
+                    notificationContext.raiser({status: true, type: 'successful', message: 'ثبت نام با موفقیت انجام شد'});
+                })
+            })
+            .catch((err) => {
+                notificationContext.raiser({status: true, type: 'error', message: 'خطایی رخ داد'});
+            })
         }
         else {
             notificationContext.raiser({status: true, type: 'error', message: 'خطا های فیلد ها را اصلاح کنید'});
